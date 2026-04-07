@@ -64,8 +64,7 @@ export const login = async (req, res) => {
 
     if (role !== user.role)
       return res.status(400).json({ message: "Role mismatch", success: false });
-
-    const secretKey = process.env.SECRET_KEY;
+      const secretKey = process.env.SECRET_KEY || "test123";
 
     
     if (!secretKey) {
