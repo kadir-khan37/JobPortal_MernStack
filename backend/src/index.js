@@ -7,6 +7,10 @@ console.log(
   "| MONGO_URI:",
   process.env.MONGO_URI ? "✓" : "✗"
 );
+console.log("==== ENV DEBUG START ====");
+console.log("SECRET_KEY:", process.env.SECRET_KEY);
+console.log("All ENV KEYS:", Object.keys(process.env));
+console.log("==== ENV DEBUG END ====");
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import path from "path";
