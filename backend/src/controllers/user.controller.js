@@ -67,12 +67,12 @@ export const login = async (req, res) => {
 
     const secretKey = process.env.SECRET_KEY;
 
-    if(!secretKey){
-      console.log("INVALID SECRET KEY");
+    
+    if (!secretKey) {
+      throw new Error("SECRET_KEY is missing in environment variables");
     } else{
       console.log(secretKey);
     }
-
     const token = jwt.sign({ userId: user._id }, secretKey, { expiresIn: "1d" });
 
     return res
