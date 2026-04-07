@@ -65,12 +65,20 @@ export const login = async (req, res) => {
     if (role !== user.role)
       return res.status(400).json({ message: "Role mismatch", success: false });
 
-    const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: "1d" });
+    const secretKey = process.env.SECRET_KEY;
+
+    if(!secretKey){
+      console.log("INVALID SECRET KEY");
+    } else{
+      console.log(secretKey);
+    }
+
+    const token = jwt.sign({ userId: user._id }, secretKey, { expiresIn: "1d" });
 
     return res
       .cookie("token", token, {
         httpOnly: true,
-        secure: false, // false for localhost
+        secure: true, // false for localhost
         sameSite: "lax",
         maxAge: 24 * 60 * 60 * 1000,
         path: "/",
