@@ -23,7 +23,7 @@ const LatestJob = () => {
   return (
     <div className="w-full mt-0 ">
       <div className="text-3xl font-bold  ml-30 mb-8 ">
-        <span className="text-purple-500 ml-20">Latest & Top</span> Job Openings
+    
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-15 my-5  ml-30 max-w-5xl mx-auto hover:scale-1.5 "
      >

@@ -5,7 +5,7 @@ console.log(
   "✓ .env loaded - PORT:",
   process.env.PORT,
   "| MONGO_URI:",
-  process.env.MONGO_URI ? "✓" : "✗"
+  process.env.MONGODB_URI ? "✓" : "✗"
 );
 console.log("==== ENV DEBUG START ====");
 console.log("SECRET_KEY:", process.env.SECRET_KEY);
@@ -30,16 +30,14 @@ app.use(cookieParser());
 
 // ================= CORS =================
 const allowedOrigins = [
-  "http://localhost:5173", // local dev
-  "https://job-portal-mern-stack-amber.vercel.app", // deployed frontend
+  "https://job-portal-mern-stack-amber.vercel.app",
 ];
 
-app.use(
-  cors({
-    origin: true,
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
+
 // ================= ROUTES =================
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/company", companyRoute);

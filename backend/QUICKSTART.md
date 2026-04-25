@@ -45,7 +45,7 @@ This will:
 npm start
 ```
 
-The application will run on `https://jobportal-mernstack-4vux.onrender.com` (or the port specified in `.env`)
+The application will run on `http://localhost:5000` (or the port specified in `.env`)
 
 ## Environment Variables
 

@@ -2,7 +2,12 @@ import {Company} from "../models/company.model.js";
 import getDataUri from "../utils/datauri.js";
 import cloudinary from "../utils/cloudinary.js";
 export const registerCompany = async(req,res)=>{
+  console.log("🔥 REGISTER COMPANY HIT");
     try{
+      console.log("REQ.ID:", req.id);   // 👈 ADD HERE
+      console.log("BODY:", req.body);   // (optional but useful)
+  
+  
        const {name} = req.body;
        if(!name){
         return res.status(400).json({
