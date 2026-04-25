@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import axios from "../../utils/axios";
+import axios from "@/utils/axios.js";
 import { useNavigate } from "react-router-dom";
 import {
   Jobs_API_Endpoint,
   Application_API_Endpoint,
-} from "../../Utils/constant.js";
+} from "../../utils/constant.js";
 
 const CardDetails = () => {
   const { id: jobId } = useParams();

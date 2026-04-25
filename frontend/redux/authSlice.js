@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "../src/Utils/axios";
-import { User_API_Endpoint } from "../src/Utils/constant.js";
+import axios from "../src/utils/axios";
+import { User_API_Endpoint } from "../src/utils/constant.js";
 
 //  Check user session from backend
 export const checkAuth = createAsyncThunk(

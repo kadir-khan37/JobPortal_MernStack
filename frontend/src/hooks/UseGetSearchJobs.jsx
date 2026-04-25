@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "../../utils/axios";
-import { Jobs_API_Endpoint } from "../Utils/constant";
+import axios from "@/utils/axios";
+import { Jobs_API_Endpoint } from "../utils/constant";
 import { setSearchedJobs } from "../../redux/jobSlice";
 
 const UseGetSearchJobs = () => {

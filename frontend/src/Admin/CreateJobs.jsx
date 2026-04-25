@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import axios from "../../utils/axios";
+import axios from "@/utils/axios.js";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/button.jsx";
-import { Jobs_API_Endpoint } from "../Utils/constant.js";
+import { Jobs_API_Endpoint } from "../utils/constant.js";
 import useGetAllCompanies from "../hooks/UseGetAllCompanies";
 
 import {

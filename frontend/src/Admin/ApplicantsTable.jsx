@@ -16,8 +16,8 @@ import {
 } from "../../src/components/ui/popover.jsx";
 
 import { MoreHorizontal } from "lucide-react";
-import axios from "../../utils/axios";
-import { Application_API_Endpoint } from "../Utils/constant.js";
+import axios from "@/utils/axios.js";
+import { Application_API_Endpoint } from "../utils/constant.js";
 
 const shortListingStatus = ["Accepted", "Rejected"];
 

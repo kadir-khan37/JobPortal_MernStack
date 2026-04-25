@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import axios from "../../utils/axios";
-import { User_API_Endpoint } from "../../Utils/constant.js";
+import axios from "@/utils/axios.js";
+import { User_API_Endpoint } from "../../utils/constant.js";
 import { setUser } from "../../../redux/authSlice.js";
 import {
   Dialog,
