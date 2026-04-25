@@ -32,9 +32,8 @@ app.use(cookieParser());
 const allowedOrigins = [
   "https://job-portal-mern-stack-amber.vercel.app",
 ];
-
 app.use(cors({
-  origin: allowedOrigins,
+  origin: true,
   credentials: true
 }));
 
@@ -49,11 +48,7 @@ app.get("/", (req, res) => {
 });
 
 // ================= FRONTEND SERVING =================
-app.use(express.static(path.join(__dirname, "../frontend", "dist")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
-});
 
 // ================= START SERVER =================
 const PORT = process.env.PORT || 5000;
