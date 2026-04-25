@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../utils/axios";
 import { User_API_Endpoint } from "../src/Utils/constant.js";
 
 //  Check user session from backend

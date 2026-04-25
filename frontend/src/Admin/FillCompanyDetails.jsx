@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "../components/ui/button.jsx";
-import axios from "axios";
+import axios from "../utils/axios";
 import { useParams } from "react-router-dom";
 import { Company_API_Endpoint } from "../Utils/constant.js";
 import { useDispatch } from "react-redux";
