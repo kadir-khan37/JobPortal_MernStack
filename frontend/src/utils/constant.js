@@ -1,0 +1,1 @@
+export const User_API_Endpoint = import.meta.env.VITE_API_URL + "/api/v1/user";
