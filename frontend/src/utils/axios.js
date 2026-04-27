@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://jobportal-mernstack-4vux.onrender.com",
-  withCredentials: true
+  baseURL: import.meta.env.VITE_API_URL,
+  withCredentials: true,
 });
 
 export default instance;
