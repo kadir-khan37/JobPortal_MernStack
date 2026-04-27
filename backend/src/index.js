@@ -21,6 +21,7 @@ import jobRoute from "./routes/job.route.js";
 import applicationRoute from "./routes/application.route.js";
 
 const app = express();
+app.set("trust proxy", 1); // ⭐ VERY IMPORTANT
 const __dirname = path.resolve();
 
 // ================= MIDDLEWARE =================
@@ -29,11 +30,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // ================= CORS =================
-const allowedOrigins = [
-  "https://job-portal-mern-stack-amber.vercel.app",
-];
+
 app.use(cors({
-  origin: true,
+  origin: "https://job-portal-mern-stack-amber.vercel.app",
   credentials: true
 }));
 
