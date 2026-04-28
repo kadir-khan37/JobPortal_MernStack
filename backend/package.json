@@ -1,27 +1,22 @@
 {
-  "name": "backend",
+    
+  "name": "jobportal-fullstack",
   "version": "1.0.0",
-  "description": "hello",
+  "description": "Full-stack job portal application",
   "type": "module",
-  "main": "src/index.js",
+  "main": "backend/src/index.js",
   "scripts": {
-    "dev": "nodemon ./src/index.js",
-    "start": "node src/index.js"
-  },
-  "dependencies": {
-    "axios": "^1.7.4",
-    "bcryptjs": "^2.4.3",
-    "cloudinary": "^2.4.0",
-    "cookie-parser": "^1.4.6",
-    "cors": "^2.8.5",
-    "datauri": "^4.1.0",
-    "dotenv": "^16.6.1",
-    "express": "^4.19.2",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.5.1",
-    "multer": "^1.4.5-lts.1"
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "npm run build:frontend",
+    "build:frontend": "cd frontend && npm install --include=dev && npm run build",
+    "build:backend": "echo 'Backend is ready'",
+    "start": "cd backend && npm install && npm start",
+    "heroku-postbuild": "npm run build"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "concurrently": "^8.2.2"
   }
 }
