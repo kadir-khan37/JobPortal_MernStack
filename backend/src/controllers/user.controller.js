@@ -49,69 +49,44 @@ export const register = async (req, res) => {
 };
 export const login = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, role } = req.body;
 
-    if (!email || !password) {
-      return res.status(400).json({
-        message: "Something is missing",
-        success: false
-      });
+    if (!email || !password || !role) {
+      return res.status(400).json({ message: "Something is missing", success: false });
     }
 
     const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(400).json({
-        message: "Invalid credentials",
-        success: false
-      });
-    }
+    if (!user) return res.status(400).json({ message:"Invalid credentials", success: false });
 
     const isPasswordMatch = await bcrypt.compare(password, user.password);
-    if (!isPasswordMatch) {
-      return res.status(400).json({
-        message: "Invalid credentials",
-        success: false
-      });
+    if (!isPasswordMatch)
+      return res.status(400).json({ message: "Invalid credentials", success: false });
+
+    if (role !== user.role)
+      return res.status(400).json({ message:"Role mismatch", success: false });
+      const secretKey = process.env.SECRET_KEY || "test123";
+    
+    if (!secretKey) {
+      console.log("⚠️ SECRET_KEY missing");
     }
-
-    if (!process.env.SECRET_KEY) {
-      throw new Error("SECRET_KEY not defined");
+    else{
+      console.log(secretKey);
     }
-
-    const token = jwt.sign(
-      { userId: user._id, role: user.role },
-      process.env.SECRET_KEY,
-      { expiresIn: "1d" }
-    );
-
-    const safeUser = {
-      _id: user._id,
-      fullName: user.fullName,
-      email: user.email,
-      role: user.role
-    };
+    const token = jwt.sign({ userId: user._id }, secretKey, { expiresIn: "1d" });
 
     return res
       .cookie("token", token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+        secure: true, // false for localhost
+        sameSite: "none",
         maxAge: 24 * 60 * 60 * 1000,
-        path: "/"
+        path: "/",
       })
       .status(200)
-      .json({
-        message: `Welcome back ${user.fullName}`,
-        user: safeUser,
-        success: true
-      });
-
+      .json({ message: `Welcome back ${user.fullName}`, user, success: true });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({
-      message: "Server error",
-      success: false
-    });
+    return res.status(500).json({ message: "Server error", success: false });
   }
 };
 
