@@ -1,69 +1,84 @@
 {
-    
-  "name": "jobportal-fullstack",
-    
-  "version": "1.0.0",
-    
-  "description": "Full-stack job portal application",
-    
-  "type": "module",
-    
-  "main": "backend/src/index.js",
-    
-  "scripts": {
-    
-      
-  "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install",
-    
-      
-  "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
-    
-      
-  "dev:backend": "cd backend && npm run dev",
-    
-      
-  "dev:frontend": "cd frontend && npm run dev",
-    
-      
-  "build": "npm run build:frontend",
-    
-      
-  "build:frontend": "cd frontend && npm install --include=dev && npm run build",
-    
-      
-  "build:backend": "echo 'Backend is ready'",
-    
-      
-  "start": "cd backend && npm install && npm start",
-    
-      
-  "heroku-postbuild": "npm run build"
-    
-  },
-    
-  "devDependencies": {
-    
-      
-  "concurrently": "^8.2.2"
-    
-  },
-    
-  "dependencies": {
-    
-      
-  "cookie-parser": "^1.4.7",
-    
-      
-  "cors": "^2.8.6",
-    
-      
-  "dotenv": "^17.4.2",
-    
-      
-  "express": "^5.2.1",
-    
-      
-  "mongoose": "^9.6.0"
-    
-  }
+    
+ "name": "jobportal-fullstack",
+    
+ "version": "1.0.0",
+    
+ "description": "Full-stack job portal application",
+    
+ "type": "module",
+    
+ "main": "backend/src/index.js",
+    
+ "scripts": {
+    
+     
+ "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    
+     
+ "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    
+     
+ "dev:backend": "cd backend && npm run dev",
+    
+     
+ "dev:frontend": "cd frontend && npm run dev",
+    
+     
+ "build": "npm run build:frontend",
+    
+     
+ "build:frontend": "cd frontend && npm install --include=dev && npm run build",
+    
+     
+ "build:backend": "echo 'Backend is ready'",
+    
+     
+ "start": "cd backend && npm install && npm start",
+    
+     
+ "heroku-postbuild": "npm run build"
+    
+ },
+    
+ "devDependencies": {
+    
+     
+ "concurrently": "^8.2.2"
+    
+ },
+    
+ "dependencies": {
+    
+     
+ "bcrypt": "^6.0.0",
+    
+     
+ "bcryptjs": "^3.0.3",
+    
+     
+ "cloudinary": "^2.10.0",
+    
+     
+ "cookie-parser": "^1.4.7",
+    
+     
+ "cors": "^2.8.6",
+    
+     
+ "dotenv": "^17.4.2",
+    
+     
+ "express": "^5.2.1",
+    
+     
+ "jsonwebtoken": "^9.0.3",
+    
+     
+ "mongoose": "^9.6.0",
+    
+     
+ "multer": "^2.1.1"
+    
+ }
 }
