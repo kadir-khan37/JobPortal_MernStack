@@ -1,5 +1,0 @@
-{
-  "watch": ["backend/src"],
-  "ext": "js,json",
-  "exec": "node backend/src/index.js"
-}
