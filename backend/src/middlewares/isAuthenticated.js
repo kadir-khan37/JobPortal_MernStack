@@ -21,15 +21,16 @@ const isAuthenticated = async (req, res, next) => {
         success: false,
       });
     }
-
-    const decode = jwt.verify(token, process.env.SECRET_KEY);
+  
+const secretKey = process.env.SECRET_KEY || "test123";
+const decode = jwt.verify(token, secretKey);
 
     req.id = decode.userId;
     next();
   } catch (error) {
-    console.error(error);
+    console.error("JWT ERROR:", error.message);
     return res.status(401).json({
-      message: "Authentication failed again and again ",
+      message: error.message,   // 👈 show real error
       success: false,
     });
   }
