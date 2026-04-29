@@ -48,6 +48,7 @@ export const register = async (req, res) => {
   }
 };
 export const login = async (req, res) => {
+  console.log("LOGIN API HIT");
   try {
     const { email, password, role } = req.body;
 
@@ -73,6 +74,9 @@ export const login = async (req, res) => {
       console.log(secretKey);
     }
     const token = jwt.sign({ userId: user._id }, secretKey, { expiresIn: "1d" });
+    console.log("TOKEN GENERATED:", token);
+    console.log("SECRET KEY USED:", secretKey);
+    console.log("TOKEN PAYLOAD CHECK:", jwt.decode(token));
 
     return res
       .cookie("token", token, {
