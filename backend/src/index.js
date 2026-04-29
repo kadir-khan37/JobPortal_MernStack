@@ -33,8 +33,13 @@ app.use(cookieParser());
 
 app.use(cors({
   origin: "https://job-portal-mern-stack-amber.vercel.app",
-  credentials: true
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
+
+// 🔥 2. Handle preflight (VERY IMPORTANT for file upload)
+app.options("*", cors());
 
 // ================= ROUTES =================
 app.use("/api/v1/user", userRoute);

@@ -1,11 +1,9 @@
-import axios from "axios";
+const formData = new FormData();
+formData.append("name", companyName);
+formData.append("logo", file);
 
-const instance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL, // ← Change to your actual backend URL
-  withCredentials: true,        // ← This is very important
+await instance.post("/api/v1/company/register", formData, {
   headers: {
-    "Content-Type": "application/json",
+    "Content-Type": "multipart/form-data",
   },
 });
-
-export default instance;
