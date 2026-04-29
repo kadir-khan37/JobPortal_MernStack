@@ -4,7 +4,7 @@ import { Application_API_Endpoint } from "../utils/constant.js";
 import { useParams } from "react-router-dom";
 import axios from "@/utils/axios.js";
 import { useDispatch, useSelector } from "react-redux";
-import { setApplicants } from "../../redux/ApplicantsSlice.js";
+import { setApplicants } from "../redux/ApplicantsSlice.js";
 
 const Applicants = () => {
   const { id } = useParams();

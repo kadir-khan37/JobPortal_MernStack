@@ -4,7 +4,7 @@ import axios from "@/utils/axios.js";
 import { useParams } from "react-router-dom";
 import { Company_API_Endpoint } from "../utils/constant.js";
 import { useDispatch } from "react-redux";
-import { setSingleCompany } from "../../redux/companyslice.js";
+import { setSingleCompany } from "../redux/companyslice.js";
 import { useNavigate } from "react-router-dom";
 
 const FillCompanyDetails = () => {

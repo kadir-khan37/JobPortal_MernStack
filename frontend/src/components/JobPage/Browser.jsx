@@ -3,7 +3,7 @@ import Job from "./Job.jsx";
 import { useDispatch, useSelector } from "react-redux";
 
 import UseGetSearchJobs from "../../hooks/UseGetSearchJobs.jsx";
-import { setSearchQuery } from "../../../redux/jobSlice.js";
+import { setSearchQuery } from "../../redux/jobSlice.js";
 
 const Browse = () => {
   const dispatch = useDispatch();

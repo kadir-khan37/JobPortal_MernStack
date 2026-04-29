@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setSearchQuery as setSearchQueryAction } from "../../../redux/jobSlice.js";
+import { setSearchQuery as setSearchQueryAction } from "../../redux/jobSlice.js";
 
 const Home = () => {
   const navigate = useNavigate();

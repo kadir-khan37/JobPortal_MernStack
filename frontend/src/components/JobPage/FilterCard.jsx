@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Label } from "../ui/label";
 import { useDispatch } from "react-redux";
-import { setSearchQuery } from "../../../redux/jobSlice";
+import { setSearchQuery } from "../../redux/jobSlice";
 
 const filterData = [
   {

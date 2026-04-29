@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import { User_API_Endpoint } from "../../utils/constant.js";
 import axios from "@/utils/axios.js";
 import { useDispatch } from "react-redux";
-import { logout } from "../../../redux/authSlice.js";
+import { logout } from "../../redux/authSlice.js";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "@/utils/axios";
 import { Jobs_API_Endpoint } from "../utils/constant";
-import { setJobs } from "../../redux/jobSlice";
+import { setJobs } from "../redux/jobSlice";
 
 const useGetAllJobs = (user) => {
   const dispatch = useDispatch();

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Company_API_Endpoint } from "../utils/constant.js";
 import axios from "@/utils/axios.js";
 import { useDispatch } from "react-redux";
-import { setSingleCompany } from "../../redux/companyslice.js";
+import { setSingleCompany } from "../redux/companyslice.js";
 
 const CreateCompanies = () => {
   const dispatch = useDispatch();

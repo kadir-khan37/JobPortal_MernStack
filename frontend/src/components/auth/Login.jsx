@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "@/utils/axios.js";
 import { User_API_Endpoint } from "../../utils/constant.js";
 import { useDispatch } from "react-redux";
-import { login } from "../../../redux/authSlice.js";
+import { login } from "../../redux/authSlice.js";
 
 const Login = () => {
   const dispatch = useDispatch();

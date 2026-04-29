@@ -4,10 +4,10 @@ import './index.css'
 import App from './App.jsx'
 
 import { Provider } from 'react-redux'
-import store, { persistor } from '../redux/store.js'   // <-- Make sure this path is correct
+import store, { persistor } from './redux/store.js'   // <-- Make sure this path is correct
 import { PersistGate } from 'redux-persist/integration/react'
 import axios from 'axios';
-import { checkAuth, logout } from '../redux/authSlice.js';
+import { checkAuth, logout } from './redux/authSlice.js';
 
 // Ensure persisted auth is validated on app start. If session cookie expired,
 const onBeforeLift = async () => {
