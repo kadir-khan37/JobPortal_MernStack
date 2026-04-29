@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 
 const isAuthenticated = async (req, res, next) => {
   try {
-    
+
     console.log("==== AUTH DEBUG START ====");
     console.log("HEADERS:", req.headers);
     console.log("COOKIES:", req.cookies);
@@ -17,7 +17,7 @@ const isAuthenticated = async (req, res, next) => {
 
     if (!token) {
       return res.status(401).json({
-        message: "User not authenticated again",
+        message: "User not authenticated again ",
         success: false,
       });
     }
@@ -29,7 +29,7 @@ const isAuthenticated = async (req, res, next) => {
   } catch (error) {
     console.error(error);
     return res.status(401).json({
-      message: "Authentication failed",
+      message: "Authentication failed again and again ",
       success: false,
     });
   }
