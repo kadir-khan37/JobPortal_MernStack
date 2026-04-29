@@ -39,7 +39,7 @@ app.use(cors({
 }));
 
 // 🔥 2. Handle preflight (VERY IMPORTANT for file upload)
-app.options("/*", cors());
+
 
 // ================= ROUTES =================
 app.use("/api/v1/user", userRoute);
