@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { Button } from "../components/ui/button.jsx";
 import axios from "@/utils/axios.js";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Company_API_Endpoint } from "../utils/constant.js";
 import { useDispatch } from "react-redux";
 import { setSingleCompany } from "../redux/companyslice.js";
-import { useNavigate } from "react-router-dom";
 
 const FillCompanyDetails = () => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const { id } = useParams();
-   const navigate = useNavigate();
+  const navigate = useNavigate();
+
   const [inputData, setInputData] = useState({
     name: "",
     description: "",
@@ -30,16 +30,21 @@ const FillCompanyDetails = () => {
 
   const submitForm = async (e) => {
     e.preventDefault();
-    setLoading(true);
-
-    const formData = new FormData();
-    formData.append("name", inputData.name);
-    formData.append("description", inputData.description);
-    formData.append("website", inputData.website);
-    formData.append("location", inputData.location);
-    formData.append("file", inputData.file);
 
     try {
+      setLoading(true);
+
+      const formData = new FormData();
+      formData.append("name", inputData.name);
+      formData.append("description", inputData.description);
+      formData.append("website", inputData.website);
+      formData.append("location", inputData.location);
+
+      // ✅ IMPORTANT: file key MUST match multer.single("file")
+      if (inputData.file) {
+        formData.append("file", inputData.file);
+      }
+
       const response = await axios.put(
         `${Company_API_Endpoint}/update/${id}`,
         formData,
@@ -52,123 +57,77 @@ const FillCompanyDetails = () => {
       );
 
       dispatch(setSingleCompany(response.data.company));
-     
-      alert("Company details updated successfully");
+
+      alert("Company updated successfully");
       navigate("/admin/companies");
-      console.log(response.data);
     } catch (error) {
       console.error(error);
-      alert(error.response?.data?.message || "Something went wrong");
+      alert(error.response?.data?.message || "Update failed");
     } finally {
       setLoading(false);
     }
   };
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <h1 className="text-2xl font-semibold text-gray-600 animate-pulse">
-          Updating company details...
-        </h1>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-xl bg-white rounded-2xl border shadow-xl p-6">
 
-        <h1 className="text-3xl font-bold text-center text-gray-800 mb-5">
+        <h1 className="text-3xl font-bold text-center mb-5">
           Fill Company Details
         </h1>
 
         <form onSubmit={submitForm} className="flex flex-col gap-4">
 
-          {/* Company Name */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Company Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              value={inputData.name}
-              onChange={handleChange}
-              placeholder="Enter company name"
-              className="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-              required
-            />
-          </div>
+          <input
+            type="text"
+            name="name"
+            value={inputData.name}
+            onChange={handleChange}
+            placeholder="Company Name"
+            className="border p-2 rounded"
+            required
+          />
 
-          {/* Description */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Description
-            </label>
-            <textarea
-              name="description"
-              value={inputData.description}
-              onChange={handleChange}
-              rows="3"
-              placeholder="Brief company description"
-              className="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none resize-none"
-              required
-            />
-          </div>
+          <textarea
+            name="description"
+            value={inputData.description}
+            onChange={handleChange}
+            placeholder="Description"
+            className="border p-2 rounded"
+            required
+          />
 
-          {/* Website */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Website
-            </label>
-            <input
-              type="text"
-              name="website"
-              value={inputData.website}
-              onChange={handleChange}
-              placeholder="https://company.com"
-              className="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-            />
-          </div>
+          <input
+            type="text"
+            name="website"
+            value={inputData.website}
+            onChange={handleChange}
+            placeholder="Website"
+            className="border p-2 rounded"
+          />
 
-          {/* Location */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Location
-            </label>
-            <input
-              type="text"
-              name="location"
-              value={inputData.location}
-              onChange={handleChange}
-              placeholder="City, Country"
-              className="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-            />
-          </div>
+          <input
+            type="text"
+            name="location"
+            value={inputData.location}
+            onChange={handleChange}
+            placeholder="Location"
+            className="border p-2 rounded"
+          />
 
-          {/* Logo */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Company Logo
-            </label>
-            <input
-              type="file"
-              name="file"
-              onChange={handleFileChange}
-              className="w-full border border-gray-300 p-2 rounded-lg bg-white"
-            />
-          </div>
+          <input
+            type="file"
+            onChange={handleFileChange}
+            className="border p-2 rounded"
+          />
 
-          {/* Submit Button */}
           <Button
             type="submit"
             disabled={loading}
-            className={`mt-4 text-white py-2 rounded-lg text-lg transition 
-            ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"}`}
+            className="bg-blue-600 text-white"
           >
-            {loading ? "Submitting..." : "Submit Details"}
+            {loading ? "Updating..." : "Update Company"}
           </Button>
-
         </form>
       </div>
     </div>
