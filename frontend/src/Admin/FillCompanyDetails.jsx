@@ -29,7 +29,6 @@ const FillCompanyDetails = () => {
     try {
       setLoading(true);
 
-      // ✅ CLEAN PAYLOAD (NO FORM DATA, NO FILE)
       const payload = {
         name: inputData.name,
         description: inputData.description,
@@ -49,6 +48,7 @@ const FillCompanyDetails = () => {
 
       alert("Company updated successfully");
       navigate("/admin/companies");
+
     } catch (error) {
       console.error(error);
       alert(error.response?.data?.message || "Update failed");
