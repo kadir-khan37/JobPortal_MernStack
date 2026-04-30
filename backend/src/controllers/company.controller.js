@@ -33,8 +33,21 @@ export const registerCompany = async(req,res)=>{
         success:true
      })
 
-    }catch(error){
-        console.log(error);
+    }catch (error) {
+      console.log(error);
+    
+      // 🔥 HANDLE DUPLICATE KEY ERROR
+      if (error.code === 11000) {
+        return res.status(400).json({
+          message: "Company already registered",
+          success: false,
+        });
+      }
+    
+      return res.status(500).json({
+        message: "Server error",
+        success: false,
+      });
     }
 }
 
