@@ -1,7 +1,7 @@
 
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../utils/axios";
-import { User_API_Endpoint } from "../utils/constant";
+const User_API_Endpoint = "https://jobportal-mernstack-4vux.onrender.com/api/v1/user";
 //  Check user session from backend
 export const checkAuth = createAsyncThunk(
   "auth/checkAuth",
