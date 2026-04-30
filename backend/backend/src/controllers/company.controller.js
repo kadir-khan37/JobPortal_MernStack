@@ -80,25 +80,14 @@ export const updateCompany = async (req, res) => {
   try {
     const { name, description, website, location } = req.body;
 
-    const updateData = {
-      name,
-      description,
-      website,
-      location,
-    };
-
-    // ✅ upload logo only if file exists
-    if (req.file) {
-      const fileUri = getDataUri(req.file);
-      const cloudResponse = await cloudinary.uploader.upload(
-        fileUri.content
-      );
-      updateData.logo = cloudResponse.secure_url;
-    }
-
     const company = await Company.findByIdAndUpdate(
       req.params.id,
-      updateData,
+      {
+        name,
+        description,
+        website,
+        location,
+      },
       { new: true }
     );
 
@@ -110,12 +99,12 @@ export const updateCompany = async (req, res) => {
     }
 
     return res.status(200).json({
-      message: "Company information updated successfully",
+      message: "Company updated successfully",
       success: true,
       company,
     });
   } catch (error) {
-    console.error(error);
+    console.log(error);
     return res.status(500).json({
       message: "Server error",
       success: false,

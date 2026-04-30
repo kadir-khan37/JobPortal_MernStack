@@ -17,15 +17,10 @@ const FillCompanyDetails = () => {
     description: "",
     website: "",
     location: "",
-    file: null,
   });
 
   const handleChange = (e) => {
     setInputData({ ...inputData, [e.target.name]: e.target.value });
-  };
-
-  const handleFileChange = (e) => {
-    setInputData({ ...inputData, file: e.target.files[0] });
   };
 
   const submitForm = async (e) => {
@@ -34,22 +29,19 @@ const FillCompanyDetails = () => {
     try {
       setLoading(true);
 
-      formData.append("name", inputData.name);
-      formData.append("description", inputData.description);
-      formData.append("website", inputData.website);
-      formData.append("location", inputData.location);
-
-      // ✅ IMPORTANT: file key MUST match multer.single("file")
-      
+      // ✅ CLEAN PAYLOAD (NO FORM DATA, NO FILE)
+      const payload = {
+        name: inputData.name,
+        description: inputData.description,
+        website: inputData.website,
+        location: inputData.location,
+      };
 
       const response = await axios.put(
         `${Company_API_Endpoint}/update/${id}`,
-        formData,
+        payload,
         {
           withCredentials: true,
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
         }
       );
 
@@ -112,7 +104,6 @@ const FillCompanyDetails = () => {
             className="border p-2 rounded"
           />
 
-
           <Button
             type="submit"
             disabled={loading}
@@ -120,6 +111,7 @@ const FillCompanyDetails = () => {
           >
             {loading ? "Updating..." : "Update Company"}
           </Button>
+
         </form>
       </div>
     </div>
