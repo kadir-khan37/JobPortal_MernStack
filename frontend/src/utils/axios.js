@@ -1,9 +1,8 @@
-const formData = new FormData();
-formData.append("name", companyName);
-formData.append("logo", file);
+import axios from "axios";
 
-await instance.post("/api/v1/company/register", formData, {
-  headers: {
-    "Content-Type": "multipart/form-data",
-  },
+const instance = axios.create({
+  baseURL: import.meta.env.VITE_API_URL,
+  withCredentials: true,
 });
+
+export default instance;
