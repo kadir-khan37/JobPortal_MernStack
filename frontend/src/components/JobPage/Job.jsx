@@ -55,9 +55,6 @@ const Job = ({job}) => {
         <button className="w-full py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg font-semibold" onClick={()=>navigate(`/details/${job._id}`)}>
           Details
         </button>
-        <button className="w-full py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-semibold">
-          Save
-        </button>
       </div>
     </motion.div>
   );
