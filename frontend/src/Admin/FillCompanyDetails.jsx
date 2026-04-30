@@ -126,7 +126,7 @@ const FillCompanyDetails = () => {
             disabled={loading}
             className="bg-blue-600 text-white"
           >
-            {loading ? "Updating..." : "Update Company"}
+            {loading ? "creating..." : "create Company"}
           </Button>
         </form>
       </div>
