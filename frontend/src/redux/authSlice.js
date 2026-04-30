@@ -1,18 +1,18 @@
-
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "../utils/axios";
-const User_API_Endpoint = "https://jobportal-mernstack-4vux.onrender.com/api/v1/user";
-//  Check user session from backend
+import axios from "../utils/axios.js";
+
 export const checkAuth = createAsyncThunk(
   "auth/checkAuth",
   async (_, { rejectWithValue }) => {
+    const User_API_Endpoint = "https://jobportal-mernstack-4vux.onrender.com/api/v1/user";
+
     try {
       const res = await axios.get(`${User_API_Endpoint}/me`, {
         withCredentials: true,
       });
-      return res.data.user; // valid user
+      return res.data.user;
     } catch (error) {
-      return rejectWithValue(null); // session expired
+      return rejectWithValue(null);
     }
   }
 );
@@ -34,7 +34,6 @@ const authSlice = createSlice({
       state.user = null;
       state.isAuthenticated = false;
     },
-    // update user after profile changes
     setUser: (state, action) => {
       state.user = action.payload;
     },
