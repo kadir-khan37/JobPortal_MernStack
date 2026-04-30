@@ -5,11 +5,10 @@ export const checkAuth = createAsyncThunk(
   "auth/checkAuth",
   async (_, { rejectWithValue }) => {
     try {
-      // Hardcoded URL directly in the request
-      const res = await axios.get("https://jobportal-mernstack-4vux.onrender.com/api/v1/user/me", {
+      const res = await axios.get("/api/v1/user/me", {
         withCredentials: true,
       });
-      return res.data.user;
+      return res.data?.user;
     } catch (error) {
       return rejectWithValue(null);
     }
