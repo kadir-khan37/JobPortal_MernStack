@@ -80,17 +80,23 @@ export const updateCompany = async (req, res) => {
   try {
     const { name, description, website, location } = req.body;
 
-    const updateData = {
-      name,
-      description,
-      website,
-      location,
-    };
+    // ✅ safe update (only update if value exists)
+    const updateData = {};
 
-    // ✅ upload logo only if file exists
-    
+    if (name) updateData.name = name;
+    if (description) updateData.description = description;
+    if (website) updateData.website = website;
+    if (location) updateData.location = location;
 
-    if (!Company) {
+    // ✅ actual update in DB
+    const company = await Company.findByIdAndUpdate(
+      req.params.id,
+      updateData,
+      { new: true }
+    );
+
+    // ✅ correct check
+    if (!company) {
       return res.status(404).json({
         message: "Company not found",
         success: false,
@@ -102,8 +108,9 @@ export const updateCompany = async (req, res) => {
       success: true,
       company,
     });
+
   } catch (error) {
-    console.error(error);
+    console.error("Update Company Error:", error);
     return res.status(500).json({
       message: "Server error",
       success: false,
