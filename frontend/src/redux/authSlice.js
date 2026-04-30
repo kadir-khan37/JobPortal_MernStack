@@ -1,14 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../utils/axios.js";
 
-const API_BASE = "https://jobportal-mernstack-4vux.onrender.com/api/v1/user";
-
-// Check user session from backend
 export const checkAuth = createAsyncThunk(
   "auth/checkAuth",
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`${API_BASE}/me`, {
+      // Hardcoded URL directly in the request
+      const res = await axios.get("https://jobportal-mernstack-4vux.onrender.com/api/v1/user/me", {
         withCredentials: true,
       });
       return res.data.user;
