@@ -34,16 +34,13 @@ const FillCompanyDetails = () => {
     try {
       setLoading(true);
 
-      const formData = new FormData();
       formData.append("name", inputData.name);
       formData.append("description", inputData.description);
       formData.append("website", inputData.website);
       formData.append("location", inputData.location);
 
       // ✅ IMPORTANT: file key MUST match multer.single("file")
-      if (inputData.file) {
-        formData.append("file", inputData.file);
-      }
+      
 
       const response = await axios.put(
         `${Company_API_Endpoint}/update/${id}`,
@@ -115,11 +112,6 @@ const FillCompanyDetails = () => {
             className="border p-2 rounded"
           />
 
-          <input
-            type="file"
-            onChange={handleFileChange}
-            className="border p-2 rounded"
-          />
 
           <Button
             type="submit"

@@ -88,21 +88,9 @@ export const updateCompany = async (req, res) => {
     };
 
     // ✅ upload logo only if file exists
-    if (req.file) {
-      const fileUri = getDataUri(req.file);
-      const cloudResponse = await cloudinary.uploader.upload(
-        fileUri.content
-      );
-      updateData.logo = cloudResponse.secure_url;
-    }
+    
 
-    const company = await Company.findByIdAndUpdate(
-      req.params.id,
-      updateData,
-      { new: true }
-    );
-
-    if (!company) {
+    if (!Company) {
       return res.status(404).json({
         message: "Company not found",
         success: false,
